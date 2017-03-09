@@ -4,9 +4,14 @@ Jsontype is a tiny library for managing json in a structured way. It's built on 
 
 
 ### Prerequisites
-    * Include the rapidjson library: https://github.com/miloyip/rapidjson
-    * Use a C++14 compiler
+- Include [rapidjson](https://github.com/miloyip/rapidjson)
+- Use a C++14 compiler
     
+    
+### Installation
+Add the jsontype directory in your includes. The library is header only!  
+Tests use the [google test framework](https://github.com/google/googletest). Examples are in the src directory and don't use any extra dependency.  
+
     
 ### How to use
 Suppose we want to map a json with the following structure into a type:
