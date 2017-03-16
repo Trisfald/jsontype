@@ -87,6 +87,30 @@ address = person[composite_key{}];
 ```
 
 
+### Resolver
+Sometimes it may be useful to do associate different actions to different kinds of json objects. A resolver does just that; an actions is represented by a callable object and it's linked to a particular json structure with a key.  
+In the following example we have two json: one models a car and the other a bike. We then setup a resolver to correctly compute the tires' cost.
+
+```C++
+// Create the tags
+JSONTYPE_MAKE_TAG(vehicle);
+JSONTYPE_MAKE_TAG(car);
+JSONTYPE_MAKE_TAG(bike);
+// Create the keys
+using key_car = Key<vehicle_tag, car_tag>;
+using key_bike = Key<vehicle_tag, bike_tag>;
+// Some example inputs
+constexpr auto car_json = "{\"vehicle\":{\"car\":{}}}";
+constexpr auto bike_json = "{\"vehicle\":{\"bike\":{}}}";
+
+Resolver<int(*)(int)> resolver; // could also be parametrized with a std::function or with a functor
+
+resolver.add(key_car{}, [](int price) { return price * 4; });  // cars have 4 tyres
+resolver.add(key_bike{}, [](int price) { return price * 2; }); // and bikes 2
+
+auto total = resolver.scan(car_json, 10); // total = 40
+total = resolver.scan(bike_json, 10); // total = 20
+```
 
 
 
