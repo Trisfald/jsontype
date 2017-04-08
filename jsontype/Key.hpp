@@ -90,13 +90,13 @@ namespace jsontype
 	};
 
 	template <typename T, typename... K>
-	auto operator+(T t, Key<K...> k) { return Key<typename T::type, Key<K...>>{}; }
+	auto operator+(T, Key<K...>) { return Key<typename T::type, Key<K...>>{}; }
 
 	template <typename T, typename... K>
-	auto operator+(Key<K...> k, T t) { return Key<Key<K...>, typename T::type>{}; }
+	auto operator+(Key<K...>, T) { return Key<Key<K...>, typename T::type>{}; }
 
 	template <typename... K_1, typename... K_2>
-	auto operator+(Key<K_1...> k_1, Key<K_2...> k_2) { return Key<Key<K_1...>, Key<K_2...>>{}; }
+	auto operator+(Key<K_1...>, Key<K_2...>) { return Key<Key<K_1...>, Key<K_2...>>{}; }
 
 	//
 	// Definitions

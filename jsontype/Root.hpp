@@ -447,13 +447,13 @@ namespace jsontype
 		struct Key_unfolder
 		{
 			template <typename Origin, typename... Args>
-			auto operator()(Origin& origin, Pack<Args...> pack) const
+			auto operator()(Origin& origin, Pack<Args...>) const
 			{
 				return do_call(origin, Args{}...);
 			}
 
 			template <typename Origin, typename Json_ref, typename Alloc, typename... Args>
-			auto operator()(Json_ref& ref, Alloc& alloc, Pack<Args...> pack) const
+			auto operator()(Json_ref& ref, Alloc& alloc, Pack<Args...>) const
 			{
 				return do_call_static<Origin>(ref, alloc, Args{}...);
 			}
@@ -711,7 +711,7 @@ namespace jsontype
 
 	template <typename Name_tag>
 	template <typename Json_ref, typename Alloc>
-	void Array<Name_tag>::structure_check(Json_ref& ref, Alloc& alloc)
+	void Array<Name_tag>::structure_check(Json_ref& ref, Alloc&)
 	{
 		if (!ref.HasMember(Name_tag::name()))
 		{
