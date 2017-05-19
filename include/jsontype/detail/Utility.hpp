@@ -13,6 +13,8 @@
 #ifndef JSONTYPE_DETAIL_UTILITY_HPP_
 #define JSONTYPE_DETAIL_UTILITY_HPP_
 
+#include <type_traits>
+
 namespace jsontype
 {
 	namespace detail
